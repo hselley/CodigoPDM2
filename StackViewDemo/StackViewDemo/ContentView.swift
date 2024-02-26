@@ -71,9 +71,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        .previewDevice("iPhone 12 Pro")
-        .previewDisplayName("iPhone 12 Pro")
-        .previewInterfaceOrientation(.landscapeLeft)
-    
+    ContentView()  
 }
