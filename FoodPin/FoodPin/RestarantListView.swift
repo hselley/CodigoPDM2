@@ -28,15 +28,20 @@ struct RestarantListView: View {
         "barrafina", "donostia", "royaloak", "cask"
     ]
     
+    var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Sydney", "Sydney", "Sydney", "New York", "New York", "New York", "New York", "New York", "New York", "New York", "London", "London", "London", "London"]
+            
+    var restaurantTypes = ["Coffee & Tea Shop", "Cafe", "Tea House", "Austrian / Causual Drink", "French", "Bakery", "Bakery", "Chocolate", "Cafe", "American / Seafood", "American", "American", "Breakfast & Brunch", "Coffee & Tea", "Coffee & Tea", "Latin American", "Spanish", "Spanish", "Spanish", "British", "Thai"]
+    
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
                 index in 
                 
-                HStack {
+                HStack(alignment: .top, spacing: 20) {
                     Image(restaurantImages[index])
                         .resizable()
                         .frame(width: 120, height: 120)
+                        .cornerRadius(20)
                     
                     VStack(alignment: .leading) {
                         Text(restaurantNames[index])
@@ -51,11 +56,18 @@ struct RestarantListView: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
     }
 }
 
-#Preview {
-    RestarantListView()
+struct RestarantListView_Previews: PreviewProvider {
+    static var previews: some View {
+        RestarantListView()
+        
+        RestarantListView()
+            .preferredColorScheme(.dark)
+            .previewInterfaceOrientation(.portrait)
+    }
 }
