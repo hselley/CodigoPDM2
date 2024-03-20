@@ -48,26 +48,12 @@ struct RestarantListView: View {
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
-                index in 
-                
-                HStack(alignment: .top, spacing: 20) {
-                    Image(restaurantImages[index])
-                        .resizable()
-                        .frame(width: 120, height: 120)
-                        .cornerRadius(20)
-                    
-                    VStack(alignment: .leading) {
-                        Text(restaurantNames[index])
-                            .font(.system(.title2, design: .rounded))
-                        
-                        Text("Type")
-                            .font(.system(.body, design: .rounded))
-                        
-                        Text("Location")
-                            .font(.system(.subheadline, design: .rounded))
-                            .foregroundStyle(.gray)
-                    }
-                }
+                index in FullImageRow(
+                    imageName: restaurantImages[index],
+                    name: restaurantNames[index],
+                    type: restaurantTypes[index],
+                    location: restaurantLocations[index]
+                )
             }
             .listRowSeparator(.hidden)
         }
@@ -82,5 +68,95 @@ struct RestarantListView_Previews: PreviewProvider {
         RestarantListView()
             .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
+    }
+}
+
+struct BasicTextImageRow: View {
+    
+    var imageName: String
+    var name: String
+    var type: String
+    var location: String
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 20) {
+            Image(imageName)
+                .resizable()
+                .frame(width: 120, height: 120)
+                .cornerRadius(20)
+            
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.system(.title2, design: .rounded))
+                
+                Text(type)
+                    .font(.system(.body, design: .rounded))
+                
+                Text(location)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(.gray)
+            }
+        }
+    }
+}
+
+struct FullImageRow: View {
+    
+    var imageName: String
+    var name: String
+    var type: String
+    var location: String
+    
+    @State private var showOptions = false
+    @State private var showError = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .cornerRadius(20)
+            
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.system(.title2, design: .rounded))
+                
+                Text(type)
+                    .font(.system(.body, design: .rounded))
+                
+                Text(location)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(.gray)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+        .onTapGesture {
+            showOptions.toggle()
+        }
+        .actionSheet(isPresented: $showOptions) {
+            ActionSheet(
+                title: Text("What do you want to do?"),
+                message: nil,
+                buttons: [
+                    .default(Text("Reserve a table")) {
+                        self.showError.toggle()
+                    },
+                    .default(Text("Mark as favorite")) {
+                        
+                    },
+                    .cancel()
+                ]
+            )
+        }
+        .alert(isPresented: $showError) {
+            Alert(
+                title: Text("Not yet available"),
+                message: Text("Sorry, this feature is not yet available. Please retry later."),
+                primaryButton: .default(Text("Ok")),
+                secondaryButton: .cancel()
+            )
+        }
     }
 }
