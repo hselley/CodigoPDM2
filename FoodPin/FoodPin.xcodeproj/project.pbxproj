@@ -11,6 +11,7 @@
 		F1318B1A2B8D515300634E6C /* RestarantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1318B192B8D515300634E6C /* RestarantListView.swift */; };
 		F1318B1C2B8D515400634E6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1318B1B2B8D515400634E6C /* Assets.xcassets */; };
 		F1318B1F2B8D515400634E6C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1318B1E2B8D515400634E6C /* Preview Assets.xcassets */; };
+		F1689D812BC4ABC8008F26A0 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1689D802BC4ABC8008F26A0 /* ActivityView.swift */; };
 		F1B227292BBDE78A0068000C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B227282BBDE78A0068000C /* Restaurant.swift */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		F1318B192B8D515300634E6C /* RestarantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestarantListView.swift; sourceTree = "<group>"; };
 		F1318B1B2B8D515400634E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1318B1E2B8D515400634E6C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F1689D802BC4ABC8008F26A0 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F1B227282BBDE78A0068000C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				F1318B192B8D515300634E6C /* RestarantListView.swift */,
+				F1689D802BC4ABC8008F26A0 /* ActivityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1318B1A2B8D515300634E6C /* RestarantListView.swift in Sources */,
+				F1689D812BC4ABC8008F26A0 /* ActivityView.swift in Sources */,
 				F1318B182B8D515300634E6C /* FoodPinApp.swift in Sources */,
 				F1B227292BBDE78A0068000C /* Restaurant.swift in Sources */,
 			);

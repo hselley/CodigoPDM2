@@ -102,7 +102,31 @@ struct RestarantListView: View {
                 index in BasicTextImageRow(
                     restaurant: $restaurants[index]
                 )
+                // MARK: - Swipe actions definition
+                .swipeActions(
+                    edge: .leading,
+                    allowsFullSwipe: false,
+                    content: {
+                        Button {
+                            // Action
+                        } label: {
+                            HStack {
+                                Image(systemName: "heart")
+                            }
+                        }
+                        .tint(.green)
+                        
+                        Button {
+                            // Action
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .tint(.orange)
+                })
             }
+            .onDelete(perform: { indexSet in
+                restaurants.remove(atOffsets: indexSet)
+            })
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
@@ -176,24 +200,47 @@ struct BasicTextImageRow: View {
                     .foregroundColor(.yellow)
             }
         }
-        .onTapGesture {
-            showOptions.toggle()
+        .contextMenu {
+            Button(action: {
+                self.showError.toggle()
+            }, label: {
+                Text("Reserve a table")
+                Image(systemName: "phone")
+            })
+            
+            Button(action: {
+                self.restaurant.isFavorite.toggle()
+            }, label: {
+                Text(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite")
+                Image(systemName: "heart")
+            })
+            
+            Button(action: {
+                self.showOptions.toggle()
+            }, label: {
+                Text("Share")
+                Image(systemName: "square.and.arrow.up")
+            })
+            
         }
-        .actionSheet(isPresented: $showOptions) {
-            ActionSheet(
-                title: Text("What do you want to do?"),
-                message: nil,
-                buttons: [
-                    .default(Text("Reserve a table")) {
-                        self.showError.toggle()
-                    },
-                    .default(Text("Mark as favorite")) {
-                        self.restaurant.isFavorite.toggle()
-                    },
-                    .cancel()
-                ]
-            )
-        }
+//        .onTapGesture {
+//            showOptions.toggle()
+//        }
+//        .actionSheet(isPresented: $showOptions) {
+//            ActionSheet(
+//                title: Text("What do you want to do?"),
+//                message: nil,
+//                buttons: [
+//                    .default(Text("Reserve a table")) {
+//                        self.showError.toggle()
+//                    },
+//                    .default(Text("Mark as favorite")) {
+//                        self.restaurant.isFavorite.toggle()
+//                    },
+//                    .cancel()
+//                ]
+//            )
+//        }
         .alert(isPresented: $showError) {
             Alert(
                 title: Text("Not yet available"),
@@ -201,6 +248,15 @@ struct BasicTextImageRow: View {
                 primaryButton: .default(Text("Ok")),
                 secondaryButton: .cancel()
             )
+        }
+        .sheet(isPresented: $showOptions) {
+            let defaultText = "Just check in at \(restaurant.name)"
+            
+            if let imageToShare = UIImage(named: restaurant.image) {
+                ActivityView(activityItems: [defaultText, imageToShare])
+            } else {
+                ActivityView(activityItems: [defaultText])
+            }
         }
     }
 }
