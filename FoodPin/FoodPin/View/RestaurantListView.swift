@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RestarantListView: View {
+struct RestaurantListView: View {
     
     @State var restaurants = [
         Restaurant(
@@ -97,47 +97,65 @@ struct RestarantListView: View {
     ]
     
     var body: some View {
-        List {
-            ForEach(restaurants.indices, id: \.self) {
-                index in BasicTextImageRow(
-                    restaurant: $restaurants[index]
-                )
-                // MARK: - Swipe actions definition
-                .swipeActions(
-                    edge: .leading,
-                    allowsFullSwipe: false,
-                    content: {
-                        Button {
-                            // Action
-                        } label: {
-                            HStack {
-                                Image(systemName: "heart")
-                            }
+        NavigationView {
+            List {
+                ForEach(restaurants.indices, id: \.self) {
+                    index in
+                    ZStack(alignment: .leading) {
+                        NavigationLink(
+                            destination: RestaurantDetailView(
+                                restaurant: restaurants[index]
+                            )
+                        ) {
+                            EmptyView()
                         }
-                        .tint(.green)
+                        .opacity(0)
                         
-                        Button {
-                            // Action
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        .tint(.orange)
+                        BasicTextImageRow(
+                            restaurant: $restaurants[index]
+                        )
+                    }
+                    // MARK: - Swipe actions definition
+    //                .swipeActions(
+    //                    edge: .leading,
+    //                    allowsFullSwipe: false,
+    //                    content: {
+    //                        Button {
+    //                            // Action
+    //                        } label: {
+    //                            HStack {
+    //                                Image(systemName: "heart")
+    //                            }
+    //                        }
+    //                        .tint(.green)
+    //                        
+    //                        Button {
+    //                            // Action
+    //                        } label: {
+    //                            Image(systemName: "square.and.arrow.up")
+    //                        }
+    //                        .tint(.orange)
+    //                })
+                }
+                .onDelete(perform: { indexSet in
+                    restaurants.remove(atOffsets: indexSet)
                 })
+                .listRowSeparator(.hidden)
             }
-            .onDelete(perform: { indexSet in
-                restaurants.remove(atOffsets: indexSet)
-            })
-            .listRowSeparator(.hidden)
+            .listStyle(.plain)
+            
+            .navigationTitle("FoodPin")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .listStyle(.plain)
+        .accentColor(.white)
     }
 }
 
-struct RestarantListView_Previews: PreviewProvider {
+struct RestaurantListView_Previews: PreviewProvider {
     static var previews: some View {
-        RestarantListView()
+        RestaurantListView()
         
-        RestarantListView()
+        RestaurantListView()
             .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
         
