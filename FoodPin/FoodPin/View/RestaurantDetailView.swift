@@ -14,38 +14,74 @@ struct RestaurantDetailView: View {
     var restaurant: Restaurant
     
     var body: some View {
-        ZStack(alignment: .top) {
-            Image(restaurant.image)
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity)
-                .ignoresSafeArea()
-            
-            Color.black
-                .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                .cornerRadius(20)
-                .padding(16)
-                .overlay {
-                    VStack(alignment: .center) {
-                        Text(restaurant.name)
-                        Text(restaurant.type)
-                        Text(restaurant.location)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Image(restaurant.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(height: 445) // La imágen mide 445 pixeles de alto
+                    .overlay {
+                        VStack {
+                            Image(systemName: "heart")
+                                .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity,
+                                       minHeight: 0, maxHeight: .infinity,
+                                       alignment: .topTrailing)
+                                .padding()
+                                .font(.system(size: 30))
+                                .foregroundColor(.white)
+                                .padding(.top, 25)
+                            
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(restaurant.name)
+                                    .font(.custom("Nunito-Regular", size: 35,
+                                                  relativeTo: .largeTitle))
+                                    .bold()
+                                
+                                Text(restaurant.type)
+                                    .font(.system(.headline,
+                                                  design: .rounded))
+                                    .padding(.all, 5)
+                                    .background(.black)
+                            }
+                            .foregroundColor(.white)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,
+                                   alignment: .bottomLeading)
+                            .padding()
+                        }
                     }
-                    .font(.system(.headline, design: .rounded))
-                    .foregroundColor(.white)
+            }
+            Text(restaurant.description)
+                .padding()
+            
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text("Address")
+                        .font(.system(.headline, design: .rounded))
+                    
+                    Text(restaurant.location)
                 }
+                
+                VStack(alignment: .leading) {
+                    Text("Phone")
+                        .font(.system(.headline, design: .rounded))
+                    
+                    Text(restaurant.phone)
+                }
+            }
+            .padding(.horizontal)
         }
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     dismiss()
                 }, label: {
-                    Text("\(Image(systemName: "chevron.left")) \(restaurant.name)")
+                    Text("\(Image(systemName: "chevron.left"))")
                 })
             }
         }
+        .ignoresSafeArea()
     }
 }
 
