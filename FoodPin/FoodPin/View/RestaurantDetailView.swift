@@ -23,13 +23,13 @@ struct RestaurantDetailView: View {
                     .frame(height: 445) // La imágen mide 445 pixeles de alto
                     .overlay {
                         VStack {
-                            Image(systemName: "heart")
+                            Image(systemName: restaurant.isFavorite ? "heart.fill" : "heart")
                                 .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity,
                                        minHeight: 0, maxHeight: .infinity,
                                        alignment: .topTrailing)
                                 .padding()
                                 .font(.system(size: 30))
-                                .foregroundColor(.white)
+                                .foregroundColor(restaurant.isFavorite ? .yellow : .white)
                                 .padding(.top, 25)
                             
                             VStack(alignment: .leading, spacing: 5) {
@@ -70,6 +70,18 @@ struct RestaurantDetailView: View {
                 }
             }
             .padding(.horizontal)
+            
+            NavigationLink(
+                destination:
+                    MapView(location: restaurant.location)
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            ) {
+                MapView(location: restaurant.location, interactionModes: [])
+                    .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity)
+                    .frame(height: 200)
+                    .cornerRadius(20)
+                    .padding()
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
