@@ -14,6 +14,7 @@
 		F14C2F882BCDE11C00C6B26F /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14C2F862BCDE11C00C6B26F /* Nunito-Regular.ttf */; };
 		F14C2F892BCDE11C00C6B26F /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14C2F872BCDE11C00C6B26F /* Nunito-Bold.ttf */; };
 		F1689D812BC4ABC8008F26A0 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1689D802BC4ABC8008F26A0 /* ActivityView.swift */; };
+		F16B20C02BD9C2F00001C1BF /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16B20BF2BD9C2F00001C1BF /* ReviewView.swift */; };
 		F171C7EC2BC74D2F00A389F5 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F171C7EB2BC74D2F00A389F5 /* RestaurantDetailView.swift */; };
 		F1B227292BBDE78A0068000C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B227282BBDE78A0068000C /* Restaurant.swift */; };
 		F1F707E02BD0855600AAD009 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F707DF2BD0855600AAD009 /* MapView.swift */; };
@@ -29,6 +30,7 @@
 		F14C2F872BCDE11C00C6B26F /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		F14C2F8A2BCDE1C400C6B26F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1689D802BC4ABC8008F26A0 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		F16B20BF2BD9C2F00001C1BF /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		F171C7EB2BC74D2F00A389F5 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 		F1B227282BBDE78A0068000C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		F1F707DF2BD0855600AAD009 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				F171C7EB2BC74D2F00A389F5 /* RestaurantDetailView.swift */,
 				F1689D802BC4ABC8008F26A0 /* ActivityView.swift */,
 				F1F707DF2BD0855600AAD009 /* MapView.swift */,
+				F16B20BF2BD9C2F00001C1BF /* ReviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				F1689D812BC4ABC8008F26A0 /* ActivityView.swift in Sources */,
 				F1318B182B8D515300634E6C /* FoodPinApp.swift in Sources */,
 				F1B227292BBDE78A0068000C /* Restaurant.swift in Sources */,
+				F16B20C02BD9C2F00001C1BF /* ReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

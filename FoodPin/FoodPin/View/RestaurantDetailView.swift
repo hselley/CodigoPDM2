@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RestaurantDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @State private var showReview = false
     
     var restaurant: Restaurant
     
@@ -82,6 +83,21 @@ struct RestaurantDetailView: View {
                     .cornerRadius(20)
                     .padding()
             }
+            
+            Button(action: {
+                self.showReview.toggle()
+            }) {
+                Text("Rate it")
+                    .font(.system(.headline, design: .rounded))
+                    .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity)
+            }
+            .tint(Color.orange)
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.roundedRectangle(radius: 25))
+            .controlSize(.large)
+            .padding(.horizontal)
+            .padding(.bottom, 50)
+            
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -94,6 +110,14 @@ struct RestaurantDetailView: View {
             }
         }
         .ignoresSafeArea()
+        .overlay(
+            self.showReview ?
+            ZStack {
+                ReviewView(restaurant: restaurant)
+                    .navigationBarHidden(true)
+            }
+            : nil
+        )
     }
 }
 
