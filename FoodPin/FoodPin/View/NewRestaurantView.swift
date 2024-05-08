@@ -10,6 +10,7 @@ import SwiftUI
 struct NewRestaurantView: View {
     @State private var restaurantImage = UIImage(named: "newphoto")!
     @State private var showPhotoOptions = false
+    @Environment(\.dismiss) var dismiss
     
     enum PhotoSource: Identifiable {
         case photoLibrary
@@ -51,6 +52,23 @@ struct NewRestaurantView: View {
                 .padding()
             }
             .navigationTitle("New Restaurant")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("Save")
+                        .font(.headline)
+//                        .foregroundColor(Color("NavigationBarTitle"))
+                        .foregroundColor(.primary)
+                }
+                
+            }
         }
         .actionSheet(isPresented: $showPhotoOptions) {
             ActionSheet(title: Text("Choose your photo source"),
@@ -65,6 +83,19 @@ struct NewRestaurantView: View {
                             .cancel()
                         ]
             )
+        }
+        .fullScreenCover(item: $photoSource) {
+            source in switch source {
+                case .photoLibrary: ImagePicker(
+                    sourceType: .photoLibrary,
+                    selectedImage: $restaurantImage
+                ).ignoresSafeArea()
+                
+                case .camera: ImagePicker(
+                    sourceType: .camera,
+                    selectedImage: $restaurantImage
+                ).ignoresSafeArea()
+            }
         }
     }
 }
